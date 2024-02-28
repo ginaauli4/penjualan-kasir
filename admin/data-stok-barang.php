@@ -8,7 +8,7 @@
             <meta charset="UTF-8">
             <meta name="viewport"
                   content="width=device-width, initial-scale=1.0">
-            <title>Data Barang</title>
+            <title>Data Stok Barang</title>
             <style>
             table {
                 width: 100%;
@@ -42,12 +42,12 @@
 
             <table border="1">
                 <tr>
-                    <th>stok</th>
                     <th>id produk</th>
                     <th>id toko</th>
                     <th>nama produk</th>
                     <th>id kategori</th>
                     <th>satuan</th>
+                    <th>stok</th>
                     <th>harga beli</th>
                     <th>harga jual</th>
                     <th>created at</th>
@@ -59,12 +59,12 @@
     while($d = mysqli_fetch_assoc($result)):
 ?>
                 <tr>
-                    <td><?= $d['stok']?></td>
                     <td><?= $d['id_produk']?></td>
                     <td><?= $d['id_toko']?></td>
                     <td><?= $d['nama_produk']?></td>
                     <td><?= $d['id_kategori']?></td>
                     <td><?= $d['satuan']?></td>
+                    <td><?= $d['stok']?></td>
                     <td><?= $d['harga_beli']?></td>
                     <td><?= $d['harga_jual']?></td>
                     <td><?= $d['created_at']?></td>

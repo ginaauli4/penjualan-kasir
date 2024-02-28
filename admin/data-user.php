@@ -68,13 +68,13 @@
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link collapsed"
-                       href="toko.php"
+                       href="data-barang.php"
                        data-toggle="collapse"
                        data-target="#collapseTwo"
                        aria-expanded="true"
                        aria-controls="collapseTwo">
                         <i class="fas fa-fw fa-folder"></i>
-                        <span>Toko</span>
+                        <span>Data Barang</span>
                     </a>
                     <a class="nav-link collapsed"
                        href="data-pelanggan.php"
@@ -102,6 +102,24 @@
                        aria-controls="collapseTwo">
                         <i class="fas fa-fw fa-folder"></i>
                         <span>Data Penjualan</span>
+                    </a>
+                    <a class="nav-link collapsed"
+                       href="data-user.php"
+                       data-toggle="collapse"
+                       data-target="#collapseTwo"
+                       aria-expanded="true"
+                       aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-folder"></i>
+                        <span>Data User</span>
+                    </a>
+                    <a class="nav-link collapsed"
+                       href="data-supplier.php"
+                       data-toggle="collapse"
+                       data-target="#collapseTwo"
+                       aria-expanded="true"
+                       aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-folder"></i>
+                        <span>Data Supplier</span>
                     </a>
 
                     <a class="nav-link collapsed"

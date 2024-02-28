@@ -14,7 +14,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 150vh;
+            height: 140vh;
             margin: 0;
         }
 
@@ -74,17 +74,6 @@
               method="post">
             <h2 style="color: #4682B4;">Tambah Barang</h2>
 
-            <label for="id_produk">ID Produk:</label>
-            <input type="text"
-                   id="id_produk"
-                   name="id_produk"
-                   readonly>
-
-            <label for="id_toko">ID Toko:</label>
-            <input type="text"
-                   id="id_toko"
-                   name="id_toko"
-                   readonly>
 
             <label for="stok">Stok:</label>
             <input type="text"
@@ -98,11 +87,6 @@
                    name="nama_produk"
                    required>
 
-            <label for="id_kategori">ID Kategori:</label>
-            <input type="text"
-                   id="id_kategori"
-                   name="id_kategori"
-                   readonly>
 
             <label for="satuan">Satuan:</label>
             <input type="text"

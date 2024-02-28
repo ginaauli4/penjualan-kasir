@@ -79,12 +79,6 @@
               method="post">
             <h2>Tambah Pengguna</h2>
 
-            <label for="id_user">ID User:</label>
-            <input type="text"
-                   id="id_user"
-                   name="id_user"
-                   readonly>
-
 
             <label for="username">Username:</label>
             <input type="text"

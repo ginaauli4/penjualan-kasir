@@ -105,11 +105,6 @@ echo "<script>alert('Gagal menambahkan data'); window.location.href = index.php;
                 <form method="POST"
                       action=""
                       class="form-inline mt-3">
-                    <label for="id_user">ID User&nbsp;</label>
-                    <input type="text"
-                           name="id_user"
-                           id="id_user"
-                           class="form-control mr-sm-2">
                     <label for="nama_barang">Nama Barang&nbsp;</label>
                     <select name="nama_barang"
                             id="nama_barang"
@@ -161,8 +156,7 @@ echo "<script>alert('Gagal menambahkan data'); window.location.href = index.php;
                 <!--code menampilkan data-->
                 <table class="table table-bordered mt-5">
                     <tr>
-                        <th>#</th>
-                        <th>id user</th>
+                        <th>No.</th>
                         <th>id penjualan</th>
                         <th>Nama Barang</th>
                         <th>Harga Satuan</th>
@@ -188,7 +182,6 @@ $tot_bayar += $total;
 
                     <tr>
                         <td><?= $no++ ?></td>
-                        <td><?= ($r['id_user']) ?></td>
                         <td><?= ($r['id_penjualan']) ?></td>
                         <td><?= ucwords($r['nama_barang']) ?></td>
                         <td><?= $r['harga'] ?></td>
@@ -206,7 +199,7 @@ $tot_bayar += $total;
                                name='id_user'
                                value='<?= $_SESSION['user_id']; ?>' />
                         <tr>
-                            <th colspan="6">Total Bayar</th>
+                            <th colspan="5">Total Bayar</th>
                             <th>
                                 <input name='total_bayar'
                                        id='total_bayar'
@@ -215,7 +208,7 @@ $tot_bayar += $total;
 
                         </tr>
                         <tr>
-                            <th colspan="6"> Bayar</th>
+                            <th colspan="5"> Bayar</th>
                             <th>
                                 <input name='jumlah_bayar'
                                        id='bayar'
@@ -225,7 +218,7 @@ $tot_bayar += $total;
                         </tr>
 
                         <tr>
-                            <th colspan="6">Sisa</th>
+                            <th colspan="5">Sisa</th>
                             <th>
                                 <input value=''
                                        name='sisa'

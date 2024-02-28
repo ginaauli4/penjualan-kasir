@@ -72,18 +72,6 @@
               method="post">
             <h2>Tambah Supplier</h2>
 
-            <label for="id_supplier">ID Supplier:</label> <!-- Perbaiki penulisan id_supplier -->
-            <input type="text"
-                   id="id_supplier"
-                   name="id_supplier"
-                   readonly>
-
-            <label for="id_toko">ID Toko:</label>
-            <input type="text"
-                   id="id_toko"
-                   name="id_toko"
-                   readonly>
-
             <label for="nama_supplier">Nama Supplier:</label> <!-- Perbaiki penulisan nama_supplier -->
             <input type="text"
                    id="nama_supplier"

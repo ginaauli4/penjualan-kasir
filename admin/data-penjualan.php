@@ -34,14 +34,12 @@ $result = $conn->query($sql);
             <table class="table">
                 <thead>
                     <tr>
-                        <th>id penjualan</th>
-                        <th>id user</th>
+                        <th>ID penjualan</th>
+                        <th>Kasir</th>
                         <th>Nama Barang</th>
                         <th>Harga</th>
                         <th>Qty</th>
                         <th>Total</th>
-                        <th>Bayar</th>
-                        <th>Sisa</th>
                         <th>Created at</th>
                     </tr>
                 </thead>
@@ -52,13 +50,10 @@ $result = $conn->query($sql);
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>";
                         echo "<td>" . $row["id_penjualan"] . "</td>";
-                        echo "<td>" . $row["id_user"] . "</td>";
                         echo "<td>" . $row["nama_barang"] . "</td>";
                         echo "<td>Rp" . number_format($row["harga_jual"], 0, ',', '.') . "</td>";
                         echo "<td>" . $row["qty"] . "</td>";
                         echo "<td>" . $row["total"] . "</td>";
-                        echo "<td>" . $row["bayar"] . "</td>";
-                        echo "<td>" . $row["sisa"] . "</td>";
                         echo "<td>" . $row["created_at"] . "</td>";
                         echo "</tr>";
                     }
