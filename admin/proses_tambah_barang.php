@@ -21,18 +21,11 @@ function dump($var)
 
 // Tangkap data dari formulir
 
-$stok = $_POST['stok'];
-$id_produk = $_POST['id_produk'];
-$id_toko = $_POST['id_toko'];
-$nama_produk = $_POST['nama_produk'];
-$id_kategori = $_POST['id_kategori'];
-$satuan = $_POST['satuan'];
-$harga_beli = $_POST['harga_beli'];
 $harga_jual = $_POST['harga_jual'];
 
 // Query SQL untuk menyimpan data ke database
-$sql = "INSERT INTO produk (stok, id_produk, id_toko, nama_produk, id_kategori, satuan, harga_beli, harga_jual)
-VALUES ('$stok', '$id_produk', '$id_toko', '$nama_produk', '$id_kategori', '$satuan', '$harga_beli', '$harga_jual')";
+$sql = "INSERT INTO produk (harga_jual)
+VALUES ('$harga_jual')";
 
 // Jalankan query
 if ($koneksi->query($sql) === TRUE) {

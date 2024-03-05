@@ -279,9 +279,6 @@
                                     <td>
                                         <a href="edit-user.php?id_user=<?= $d['id_user']?>"><button
                                                     class="btn btn-primary">Edit</button></a>
-                                        <a href="delete-user.php?id_user=<?= $d['id_user']?>"
-                                           onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><button
-                                                    class="btn btn-danger">Delete</button></a>
                                     </td>
                                 </tr>
                                 <?php endwhile ?>

@@ -72,10 +72,16 @@
               method="post">
             <h2>Tambah Supplier</h2>
 
-            <label for="nama_supplier">Nama Supplier:</label> <!-- Perbaiki penulisan nama_supplier -->
+            <label for="nama_supplier">Nama Supplier:</label>
             <input type="text"
                    id="nama_supplier"
                    name="nama_supplier"
+                   required>
+
+            <label for="categori">Kategori:</label>
+            <input type="text"
+                   id="categori"
+                   name="categori"
                    required>
 
             <label for="tlp_hp">No. Telepon:</label>
@@ -94,6 +100,7 @@
                    value="Tambah Supplier">
         </form>
     </body>
+
     <script>
     var createdAtInput = document.getElementById("created_at");
 

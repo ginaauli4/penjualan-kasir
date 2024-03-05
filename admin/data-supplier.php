@@ -256,9 +256,9 @@
 
                                 <table border="1">
                                     <tr>
-                                        <th>ID Supplier</th>
-                                        <th>ID Toko</th>
+                                        <th>No.</th>
                                         <th>Nama Supplier</th>
+                                        <th>Kategori</th>
                                         <th>No. Telepon</th>
                                         <th>Created At</th>
                                         <th>Aksi</th>
@@ -266,20 +266,21 @@
                                     <?php
             include "../koneksi.php";
             $result = mysqli_query($koneksi, "SELECT * FROM suplier");
+             $no = 1;
             while ($d = mysqli_fetch_assoc($result)) :
             ?>
                                     <tr>
-                                        <td><?= $d['id_supplier'] ?></td>
-                                        <td><?= $d['id_toko'] ?></td>
+                                        <td><?= $no++?></td>
                                         <td><?= $d['nama_supplier'] ?></td>
+                                        <td><?= $d['categori'] ?></td>
                                         <td><?= $d['tlp_hp'] ?></td>
                                         <td><?= $d['created_at'] ?></td>
                                         <td>
                                             <a href="edit-supplier.php?id_supplier=<?= $d['id_supplier']?>"><button
                                                         class="btn btn-primary">Edit</button></a>
-                                            <a href="delete-supplier.php?id_supplier=<?= $d['id_supplier']?>"
-                                               onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><button
-                                                        class="btn btn-danger">Delete</button></a>
+                                            <a
+                                               href="detail-supplier.php?kategori=<?= $d['kategori']?>&&id_supplier=<?= $d['id_supplier']?>"><button
+                                                        class="btn btn-success">Detail</button></a>
                                         </td>
 
                                     </tr>

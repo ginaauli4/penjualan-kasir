@@ -1,43 +1,29 @@
-<?php
-// Pastikan form telah disubmit
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Ambil data dari form
-    $id_user = $_POST["id_user"];
-    $no_faktur = $_POST["no_faktur"];
-    $qty = $_POST["qty"];
-    $tanggal_pembelian = $_POST["tanggal_pembelian"];
-    $id_suplier = $_POST["id_suplier"];
-    $harga_beli = $_POST["harga_beli"];
-    $bayar = $_POST["bayar"];
-    $sisa = $_POST["sisa"];
-    $created_at = $_POST["created_at"];
+<?php 
+session_start();
+include "../koneksi.php";
 
-    // Lakukan validasi data
-    // Misalnya, pastikan semua input tidak kosong dan sesuai dengan format yang diharapkan
+$total_bayar = $_POST['total_bayar'];
+$sisa = $_POST['sisa'];
+$jumlah_bayar = $_POST['jumlah_bayar'];
 
-    // Koneksi ke database
-    $conn = new mysqli('localhost', 'root', '', 'pos');
+$result_tambah_pembelian= mysqli_query($koneksi,"SELECT tambah_pembelian.*,barang_suplier.* FROM tambah_pembelian INNER JOIN barang_suplier ON tambah_pembelian.nama_produk = barang_suplier.nama_barang");
+$datenow = date("Y-m-d");
 
-    // Periksa koneksi
-    if ($conn->connect_error) {
-        die("Koneksi gagal: " . $conn->connect_error);
-    }
+while($row = mysqli_fetch_assoc($result_tambah_pembelian)){
+    $nama_barang = $row['nama_produk'];
+    $bayar = $row['bayar'];
+    $sisa = $row['sisa'];
+    $qty = $row['qty'];
+    $harga = $row['harga'];
+    $total = $row['harga'] * $qty;
+    $sisa_barang = $jumlah_bayar - $total_bayar;
+    $nama_suplier = $row['nama_suplier'];
 
-    // Query untuk memasukkan data pembelian ke dalam database
-    $sql = "INSERT INTO pembelian (id_user, id_produk, qty, tanggal_pembelian, id_suplier, harga_beli, bayar, sisa, created_at) VALUES ('$id_user', '$id_produk', '$qty', '$tanggal_pembelian', '$id_suplier', '$harga_beli', '$bayar', '$sisa', '$created_at')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Pembelian berhasil ditambahkan.";
-        header("Location: data-pembelian.php");
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-
-    // Tutup koneksi database
-    $conn->close();
-} else {
-    // Jika tidak, redirect ke halaman tambah pembelian
-    header("Location: tambah-pembelian.php");
-    exit();
+    $insertdata = mysqli_query($koneksi,"INSERT INTO pembelian (qty,bayar,sisa,nama_produk,tanggal_pembelian,harga_beli,nama_suplier,total_bayar) VALUES ('$qty','$jumlah_bayar','$sisa_barang','$nama_barang','$datenow','$total','$nama_suplier','$total_bayar')");
+    $insertdatabarang = mysqli_query($koneksi,"INSERT INTO produk (nama_produk,stok,harga_beli,created_at) VALUES ('$nama_barang','$qty','$harga','$datenow')");
 }
+
+$deleteproduk = mysqli_query($koneksi,"DELETE FROM tambah_pembelian");
+header("Location:data-pembelian.php");
+
 ?>

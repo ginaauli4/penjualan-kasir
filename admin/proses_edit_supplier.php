@@ -6,6 +6,7 @@ session_start();
 $id_supplier = $_POST['id_supplier'];
 $id_toko = $_POST['id_toko'];
 $nama_supplier = $_POST['nama_supplier'];
+$kategori = $_POST['kategori'];
 $no_telepon = $_POST['no_telepon'];
 $alamat = $_POST['alamat'];
 $created_at = $_POST['created_at'];
@@ -20,11 +21,12 @@ try {
 }
 
 // Buat query untuk mengupdate data supplier
-$sql = "UPDATE suplier SET id_toko = :id_toko, nama_supplier = :nama_supplier, tlp_hp = :tlp_hp, alamat_supplier = :alamat, created_at = :created_at WHERE id_supplier = :id_supplier";
+$sql = "UPDATE suplier SET id_toko = :id_toko, nama_supplier = :nama_supplier, kategori = :kategori, tlp_hp = :tlp_hp, alamat_supplier = :alamat, created_at = :created_at WHERE id_supplier = :id_supplier";
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':id_supplier', $id_supplier);
 $stmt->bindParam(':id_toko', $id_toko);
 $stmt->bindParam(':nama_supplier', $nama_supplier);
+$stmt->bindParam(':kategori', $kategori);
 $stmt->bindParam(':tlp_hp', $no_telepon);
 $stmt->bindParam(':alamat', $alamat);
 $stmt->bindParam(':created_at', $created_at);

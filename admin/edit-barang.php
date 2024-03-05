@@ -124,32 +124,19 @@ $created_at = $produk['created_at'];
                        name="id_produk"
                        value="<?= $id_produk ?>">
 
-                <label for="id_toko">ID Toko:</label>
-                <input type="text"
-                       id="id_toko"
-                       name="id_toko"
-                       value="<?= $id_toko ?>"
-                       readonly>
 
                 <label for="stok">Stok:</label>
                 <input type="text"
                        id="stok"
                        name="stok"
                        value="<?= $stok ?>"
-                       required>
+                       readonly>
 
                 <label for="nama_produk">Nama Produk:</label>
                 <input type="text"
                        id="nama_produk"
                        name="nama_produk"
                        value="<?= $nama_produk ?>"
-                       required>
-
-                <label for="id_kategori">ID Kategori:</label>
-                <input type="text"
-                       id="id_kategori"
-                       name="id_kategori"
-                       value="<?= $id_kategori ?>"
                        readonly>
 
                 <label for="satuan">Satuan:</label>
@@ -178,7 +165,7 @@ $created_at = $produk['created_at'];
                        id="created_at"
                        name="created_at"
                        value="<?= $created_at ?>"
-                       required>
+                       readonly>
 
                 <input type="submit"
                        value="Simpan Perubahan">

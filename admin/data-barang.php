@@ -254,38 +254,32 @@
 
                                 <h2>Data Barang</h2>
 
-                                <a href="tambah-barang.php"><button class="btn btn-primary">Tambah Barang</button></a>
+                                <a href="tambah-barang.php"></a>
 
                                 <table border="1">
                                     <tr>
-                                        <th>id produk</th>
-                                        <th>id toko</th>
-                                        <th>nama produk</th>
-                                        <th>id kategori</th>
-                                        <th>harga beli</th>
-                                        <th>harga jual</th>
-                                        <th>stok</th>
-                                        <th>aksi</th>
+                                        <th>No.</th>
+                                        <th>Nama produk</th>
+                                        <th>Harga beli</th>
+                                        <th>Harga jual</th>
+                                        <th>Stok</th>
+                                        <th>Aksi</th>
                                     </tr>
                                     <?php 
     include "../koneksi.php";
     $result = mysqli_query($koneksi,"SELECT * FROM produk");
+    $no = 1;
     while($d = mysqli_fetch_assoc($result)):
 ?>
                                     <tr>
-                                        <td><?= $d['id_produk']?></td>
-                                        <td><?= $d['id_toko']?></td>
+                                        <td><?= $no++?></td>
                                         <td><?= $d['nama_produk']?></td>
-                                        <td><?= $d['id_kategori']?></td>
                                         <td><?= $d['harga_beli']?></td>
                                         <td><?= $d['harga_jual']?></td>
                                         <td><?= $d['stok']?></td>
                                         <td>
                                             <a href="edit-barang.php?id_produk=<?= $d['id_produk']?>"><button
                                                         class="btn btn-primary">Edit</button></a>
-                                            <a href="delete-barang.php?id_produk=<?= $d['id_produk']?>"
-                                               onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><button
-                                                        class="btn btn-danger">Delete</button></a>
                                         </td>
 
 

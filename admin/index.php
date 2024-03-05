@@ -1,3 +1,6 @@
+<?php
+include '../koneksi.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -196,18 +199,94 @@
                             <i class="fa fa-bars"></i>
                         </button>
 
+
                         <!-- Topbar Navbar -->
                         <ul class="navbar-nav ml-auto">
 
+                            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                            <li class="nav-item dropdown no-arrow d-sm-none">
+                                <a class="nav-link dropdown-toggle"
+                                   href="#"
+                                   id="searchDropdown"
+                                   role="button"
+                                   data-toggle="dropdown"
+                                   aria-haspopup="true"
+                                   aria-expanded="false">
+                                    <i class="fas fa-search fa-fw"></i>
+                                </a>
+                                <!-- Dropdown - Messages -->
+                                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                     aria-labelledby="searchDropdown">
+                                    <form class="form-inline mr-auto w-100 navbar-search">
+                                        <div class="input-group">
+                                            <input type="text"
+                                                   class="form-control bg-light border-0 small"
+                                                   placeholder="Search for..."
+                                                   aria-label="Search"
+                                                   aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary"
+                                                        type="button">
+                                                    <i class="fas fa-search fa-sm"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
 
-
-                            <!-- Dropdown - Messages -->
 
                             </li>
 
                             <div class="topbar-divider d-none d-sm-block"></div>
 
-                            </a>
+                            <!-- Nav Item - User Information -->
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle"
+                                   href="#"
+                                   id="userDropdown"
+                                   role="button"
+                                   data-toggle="dropdown"
+                                   aria-haspopup="true"
+                                   aria-expanded="false">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+                                    <?php
+                                    if (isset($_SESSION['username'])){
+                                        echo $_SESSION['username'];
+                                    } else {
+                                        echo "user";
+                                    }
+                                    ?>
+                                    <img class="img-profile rounded-circle"
+                                         src="img/undraw_profile.svg">
+                                </a>
+                                <!-- Dropdown - User Information -->
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                     aria-labelledby="userDropdown">
+                                    <a class="dropdown-item"
+                                       href="#">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Profile
+                                    </a>
+                                    <a class="dropdown-item"
+                                       href="#">
+                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Settings
+                                    </a>
+                                    <a class="dropdown-item"
+                                       href="#">
+                                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Activity Log
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item"
+                                       href="#"
+                                       data-toggle="modal"
+                                       data-target="#logoutModal">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Logout
+                                    </a>
+                                </div>
                             </li>
 
                         </ul>
@@ -226,65 +305,81 @@
 
                         <!-- Content Row -->
                         <div class="row">
-
-                            <!-- Earnings (Monthly) Card Example -->
+                            <!-- Total Data User -->
                             <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card border-left-info shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                    <a href="data-supplier.php">Data Supplier</a>
+                                                    Total Data User
                                                 </div>
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col-auto">
-                                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-
-                                                    </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php
+                            // Query to get total user count
+                            $query = "SELECT COUNT(*) AS total_user FROM user";
+                            $result = mysqli_query($koneksi, $query);
+                            $row = mysqli_fetch_assoc($result);
+                            echo $row['total_user'];
+                            ?>
                                                 </div>
                                             </div>
                                             <div class="col-auto">
-                                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                                <i class="fas fa-user fa-2x text-gray-300"></i>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Earnings (Monthly) Card Example -->
+                            <!-- Total Data Supplier -->
                             <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card border-left-primary shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    <a href="data-user.php">Data User</a>
+                                                    Total Data Supplier
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php
+                        // Query to get total supplier count
+                        $query = "SELECT COUNT(*) AS total_supplier FROM suplier";
+                        $result = mysqli_query($koneksi, $query);
+                        $row = mysqli_fetch_assoc($result);
+                        echo $row['total_supplier'];
+                        ?>
                                                 </div>
                                             </div>
                                             <div class="col-auto">
-                                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                                <i class="fas fa-truck fa-2x text-gray-300"></i>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Earnings (Monthly) Card Example -->
+                            <!-- Total Data Penjualan -->
                             <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card border-left-success shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    <a href="data-barang.php">Data Barang</a>
+                                                    Total Data Penjualan
                                                 </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php
+                        // Query to get total penjualan count
+                        $query = "SELECT COUNT(*) AS total_penjualan FROM penjualan";
+                        $result = mysqli_query($koneksi, $query);
+                        $row = mysqli_fetch_assoc($result);
+                        echo $row['total_penjualan'];
+                        ?>
+                                                </div>
                                             </div>
                                             <div class="col-auto">
-                                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                                <i class="fas fa-shopping-cart fa-2x text-gray-300"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -293,133 +388,134 @@
 
 
 
-                        </div>
 
-                        <!-- Content Row -->
 
-                        <div class="row">
+                            <!-- Content Row -->
 
-                            <!-- Area Chart -->
-                            <div class="col-xl-8 col-lg-7">
-                                <div class="card shadow mb-4">
-                                    <!-- Card Header - Dropdown -->
+                            <div class="row">
 
-                                    <!-- Card Body -->
+                                <!-- Area Chart -->
+                                <div class="col-xl-8 col-lg-7">
+                                    <div class="card shadow mb-4">
+                                        <!-- Card Header - Dropdown -->
+
+                                        <!-- Card Body -->
+
+                                    </div>
+                                </div>
+
+                                <!-- Pie Chart -->
+                                <div class="col-xl-4 col-lg-5">
+                                    <div class="card shadow mb-4">
+                                        <!-- Card Header - Dropdown -->
+
+                                        <!-- Card Body -->
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Content Row -->
+                            <div class="row">
+
+                                <!-- Content Column -->
+                                <div class="col-lg-6 mb-4">
+
+                                    <!-- Project Card Example -->
+
+
+                                    <!-- Color System -->
+
+
+                                </div>
+
+                                <div class="col-lg-6 mb-4">
+
+                                    <!-- Illustrations -->
+
+
+                                    <!-- Approach -->
+
 
                                 </div>
                             </div>
 
-                            <!-- Pie Chart -->
-                            <div class="col-xl-4 col-lg-5">
-                                <div class="card shadow mb-4">
-                                    <!-- Card Header - Dropdown -->
-
-                                    <!-- Card Body -->
-
-                                </div>
-                            </div>
                         </div>
-
-                        <!-- Content Row -->
-                        <div class="row">
-
-                            <!-- Content Column -->
-                            <div class="col-lg-6 mb-4">
-
-                                <!-- Project Card Example -->
-
-
-                                <!-- Color System -->
-
-
-                            </div>
-
-                            <div class="col-lg-6 mb-4">
-
-                                <!-- Illustrations -->
-
-
-                                <!-- Approach -->
-
-
-                            </div>
-                        </div>
+                        <!-- /.container-fluid -->
 
                     </div>
-                    <!-- /.container-fluid -->
+                    <!-- End of Main Content -->
+
+                    <!-- Footer -->
+                    <footer class="sticky-footer bg-white">
+                        <div class="container my-auto">
+                            <div class="copyright text-center my-auto">
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- End of Footer -->
 
                 </div>
-                <!-- End of Main Content -->
-
-                <!-- Footer -->
-                <footer class="sticky-footer bg-white">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                        </div>
-                    </div>
-                </footer>
-                <!-- End of Footer -->
+                <!-- End of Content Wrapper -->
 
             </div>
-            <!-- End of Content Wrapper -->
+            <!-- End of Page Wrapper -->
 
-        </div>
-        <!-- End of Page Wrapper -->
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded"
+               href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
 
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded"
-           href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
-
-        <!-- Logout Modal-->
-        <div class="modal fade"
-             id="logoutModal"
-             tabindex="-1"
-             role="dialog"
-             aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog"
-                 role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title"
-                            id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close"
-                                type="button"
-                                data-dismiss="modal"
-                                aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary"
-                                type="button"
-                                data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary"
-                           href="login.html">Logout</a>
+            <!-- Logout Modal-->
+            <div class="modal fade"
+                 id="logoutModal"
+                 tabindex="-1"
+                 role="dialog"
+                 aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog"
+                     role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title"
+                                id="exampleModalLabel">Ready to Leave?</h5>
+                            <button class="close"
+                                    type="button"
+                                    data-dismiss="modal"
+                                    aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary"
+                                    type="button"
+                                    data-dismiss="modal">Cancel</button>
+                            <a class="btn btn-primary"
+                               href="login.html">Logout</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="../vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <!-- Bootstrap core JavaScript-->
+            <script src="../vendor/jquery/jquery.min.js"></script>
+            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Core plugin JavaScript-->
-        <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+            <!-- Core plugin JavaScript-->
+            <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        <!-- Custom scripts for all pages-->
-        <script src="../js/sb-admin-2.min.js"></script>
+            <!-- Custom scripts for all pages-->
+            <script src="../js/sb-admin-2.min.js"></script>
 
-        <!-- Page level plugins -->
-        <script src="../vendor/chart.js/Chart.min.js"></script>
+            <!-- Page level plugins -->
+            <script src="../vendor/chart.js/Chart.min.js"></script>
 
-        <!-- Page level custom scripts -->
-        <script src="../js/demo/chart-area-demo.js"></script>
-        <script src="../js/demo/chart-pie-demo.js"></script>
+            <!-- Page level custom scripts -->
+            <script src="../js/demo/chart-area-demo.js"></script>
+            <script src="../js/demo/chart-pie-demo.js"></script>
 
     </body>
 

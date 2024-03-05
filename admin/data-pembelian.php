@@ -35,13 +35,12 @@ $result = $conn->query($sql);
             <table class="table">
                 <thead>
                     <tr>
-                        <th>ID Pembelian</th>
-                        <th>ID User</th>
-                        <th>ID Produk</th>
-                        <th>Qty</th>
                         <th>Tanggal Pembelian</th>
-                        <th>ID Suplier</th>
+                        <th>Nama Supplier</th>
+                        <th>Nama Produk</th>
+                        <th>Qty</th>
                         <th>Harga Beli</th>
+                        <th>Total Bayar</th>
                         <th>Bayar</th>
                         <th>Sisa</th>
                         <th>Created at</th>
@@ -53,13 +52,12 @@ $result = $conn->query($sql);
                     // Output data dari setiap baris
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>";
-                        echo "<td>" . $row["id_pembelian"] . "</td>";
-                        echo "<td>" . $row["id_user"] . "</td>";
-                        echo "<td>" . $row["id_produk"] . "</td>";
-                        echo "<td>" . $row["qty"] . "</td>";
                         echo "<td>" . $row["tanggal_pembelian"] . "</td>";
-                        echo "<td>" . $row["id_suplier"] . "</td>";
+                        echo "<td>" . $row["nama_suplier"] . "</td>";
+                        echo "<td>" . $row["nama_produk"] . "</td>";
+                        echo "<td>" . $row["qty"] . "</td>";
                         echo "<td>Rp" . number_format($row["harga_beli"], 0, ',', '.') . "</td>";
+                        echo "<td>Rp" . number_format($row["total_bayar"], 0, ',', '.') . "</td>";
                         echo "<td>Rp" . number_format($row["bayar"], 0, ',', '.') . "</td>";
                         echo "<td>Rp" . number_format($row["sisa"], 0, ',', '.') . "</td>";
                         echo "<td>" . $row["created_at"] . "</td>";

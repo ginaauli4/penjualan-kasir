@@ -19,10 +19,10 @@ $id_toko = $_POST['id_toko'];
 $nama_supplier = $_POST['nama_supplier'];
 $tlp_hp = $_POST['tlp_hp'];
 $created_at = $_POST['created_at'];
-
+$categori = $_POST['categori'];
 // Query SQL untuk menyimpan data ke database
-$sql = "INSERT INTO suplier (id_supplier, id_toko, nama_supplier, tlp_hp, created_at)
-        VALUES ('$id_supplier', '$id_toko', '$nama_supplier', '$tlp_hp', '$created_at')";
+$sql = "INSERT INTO suplier (id_supplier, id_toko, categori, nama_supplier, tlp_hp, created_at)
+        VALUES ('$id_supplier', '$id_toko','$categori', '$nama_supplier', '$tlp_hp', '$created_at')";
 
 // Jalankan query
 if ($koneksi->query($sql) === TRUE) {

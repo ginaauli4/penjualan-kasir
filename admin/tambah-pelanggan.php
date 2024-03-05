@@ -76,17 +76,6 @@
               method="post">
             <h2>Tambah Pelanggan</h2>
 
-            <label for="id_pelanggan">ID Pelanggan:</label>
-            <input type="text"
-                   id="id_pelanggan"
-                   name="id_pelanggan"
-                   required>
-
-            <label for="id_toko">ID Toko:</label>
-            <input type="text"
-                   id="id_toko"
-                   name="id_toko"
-                   required>
 
             <label for="nama_pelanggan">Nama Pelanggan:</label>
             <input type="text"

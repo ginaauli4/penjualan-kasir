@@ -2,7 +2,7 @@
  session_start();
 // koneksi
 $conn = new mysqli('localhost', 'root', '', 'pos');
- 
+
 // simpan data
 if (isset($_POST['submit'])) {
 
@@ -24,7 +24,7 @@ header('Location: index.php');
 echo "<script>alert('Gagal menambahkan data'); window.location.href = index.php;</script>";
 }
 }
- 
+
 ?>
 
 <!DOCTYPE html>
@@ -105,12 +105,14 @@ echo "<script>alert('Gagal menambahkan data'); window.location.href = index.php;
                 <form method="POST"
                       action=""
                       class="form-inline mt-3">
+
+
                     <label for="nama_barang">Nama Barang&nbsp;</label>
                     <select name="nama_barang"
                             id="nama_barang"
                             class="form-control mr-sm-2">
                         >
-                        <?php 
+                        <?php
                             $resultbarang = mysqli_query($conn,"SELECT * FROM produk");
                             while($d = mysqli_fetch_assoc($resultbarang)):
                         ?>
@@ -120,18 +122,21 @@ echo "<script>alert('Gagal menambahkan data'); window.location.href = index.php;
 
 
                     <label for="harga">Harga&nbsp;</label>
-                    <select type="number"
-                            name="harga"
-                            id="harga"
-                            class="form-control mr-sm-2">
+                    <input type='number'
+                           name="harga"
+                           id="harga"
+                           class="form-control mr-sm-2" />
+
+                    <!-- <select type="number"
+                           
                         >
-                        <?php 
+                        <?php
                             $resultbarang = mysqli_query($conn,"SELECT * FROM produk");
                             while($d = mysqli_fetch_assoc($resultbarang)):
                         ?>
                         <option value="<?= $d['harga_jual'] ?>"><?= $d['harga_jual'] ?></option>
                         <?php endwhile ?>
-                    </select>
+                    </select> -->
 
                     <label>Qty&nbsp;</label>
                     <input type="number"
@@ -167,11 +172,11 @@ echo "<script>alert('Gagal menambahkan data'); window.location.href = index.php;
                     <?php
 // perintah tampil data
 $q = mysqli_query($conn, "SELECT * FROM produk_kasir");
- 
+
 $total = 0;
 $tot_bayar = 0;
 $no = 1;
- 
+
 while ($r = $q->fetch_assoc()) {
 // total adalah hasil dari harga x qty
 $sisa = $r['bayar'] - $r['harga'];
@@ -231,13 +236,52 @@ $tot_bayar += $total;
                         name="submit"
                         class="btn btn-primary">SIMPAN</button>
                 </form>
-                <button type="submit"
-                        name="submit"
-                        class="btn btn-primary">DETAIL</button>
-
             </div>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    const selectharga = () => {
+        var namaBarang = $('#nama_barang').val();
+        console.log(namaBarang)
+        $.ajax({
+            url: '../admin/get_harga_penjualan.php',
+            type: 'post',
+            data: {
+                nama_barang: namaBarang
+            },
+            success: function(response) {
+                $('#harga').val(response);
+            }
+        });
+    }
+    // const selectbarang = () => {
+    //     var namaSuplier = $('#nama_suplier').val();
+    //     console.log(namaSuplier)
+    //     $.ajax({
+    //         url: 'get_suplier_penjualan.php',
+    //         type: 'post',
+    //         data: {
+    //             nama_suplier: namaSuplier
+    //         },
+    //         success: function(response) {
+    //             $('#nama_barang').html(response);
+    //         }
+    //     });
+    // }
+
+    // $('#nama_suplier').change(function() {
+    //     selectbarang()
+    // })
+
+    $('#nama_barang').change(function() {
+        selectharga()
+    })
+    $(document).ready(function() {
+        //selectbarang()
+        selectharga()
+    });
+    </script>
     <script>
     const bayarinput = document.getElementById("bayarinput")
     const bayar = document.getElementById("bayar")

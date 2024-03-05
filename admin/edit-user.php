@@ -37,7 +37,6 @@ $username = $user['username'];
 $password = $user['password'];
 $email = $user['email'];
 $nama_lengkap = $user['nama_lengkap'];
-$alamat = $user['alamat'];
 $access_level = $user['access_level'];
 $created_at = $user['created_at'];
 ?>
@@ -125,6 +124,13 @@ $created_at = $user['created_at'];
                    id="username"
                    name="username"
                    value="<?= $username ?>"
+                   required>
+
+            <label for="password">Password:</label>
+            <input type="text"
+                   id="password"
+                   name="password"
+                   value="<?= $password ?>"
                    required>
 
             <label for="email">Email:</label>

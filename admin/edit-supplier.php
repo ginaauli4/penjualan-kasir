@@ -34,6 +34,7 @@ if(isset($_GET['id_supplier'])) {
 // Set nilai-nilai dalam variabel PHP jika supplier ditemukan
 $id_toko = $supplier['id_toko'];
 $nama_supplier = $supplier['nama_supplier'];
+$kategori = $supplier['kategori'];
 $no_telepon = $supplier['tlp_hp'];
 $alamat = $supplier['alamat_supplier'];
 $created_at = $supplier['created_at'];
@@ -54,7 +55,7 @@ $created_at = $supplier['created_at'];
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 150vh;
+            height: 120vh;
             margin: 0;
         }
 
@@ -116,18 +117,18 @@ $created_at = $supplier['created_at'];
                    name="id_supplier"
                    value="<?= $id_supplier ?>">
 
-            <label for="id_toko">ID Toko:</label>
-            <input type="text"
-                   id="id_toko"
-                   name="id_toko"
-                   value="<?= $id_toko ?>"
-                   required>
-
             <label for="nama_supplier">Nama Supplier:</label>
             <input type="text"
                    id="nama_supplier"
                    name="nama_supplier"
                    value="<?= $nama_supplier ?>"
+                   required>
+
+            <label for="kategori">Kategori:</label>
+            <input type="text"
+                   id="kategori"
+                   name="kategori"
+                   value="<?= $kategori ?>"
                    required>
 
             <label for="no_telepon">No. Telepon:</label>
@@ -137,12 +138,6 @@ $created_at = $supplier['created_at'];
                    value="<?= $no_telepon ?>"
                    required>
 
-            <label for="alamat">Alamat:</label>
-            <input type="text"
-                   id="alamat"
-                   name="alamat"
-                   value="<?= $alamat ?>"
-                   required>
 
             <label for="created_at">Created At:</label>
             <input type="text"

@@ -1,144 +1,276 @@
+<?php
+include '../koneksi.php';
+ session_start();
+// koneksi
+$conn = new mysqli('localhost', 'root', '', 'pos');
+ 
+// simpan data
+if (isset($_POST['submit'])) {
+$iduser = $_SESSION['id_user'];
+$ns = $_POST['nama_suplier'];
+$nb = $_POST['nama_barang'];
+$qty = $_POST['qty'];
+$hrg = (int)$_POST['harga'];
+$byr = (int)$_POST['bayar'];
+$sisa = $byr - $hrg;
+
+$q = mysqli_query($conn, "INSERT INTO tambah_pembelian (nama_suplier, nama_produk, qty, harga, bayar, sisa) VALUES ('$ns','$nb', '$qty','$hrg', '$byr','$sisa')");
+
+if($q) {
+header('Location: tambah-pembelian.php');
+} else {
+echo "<script>alert('Gagal menambahkan data'); window.location.href = index.php;</script>";
+}
+}
+ 
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, initial-scale=1.0">
-        <title>Tambah Pembelian</title>
-        <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 170vh;
-            margin: 0;
-        }
+        <!DOCTYPE html>
+        <html lang="en">
 
-        form {
-            background-color: #ffffff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            width: 400px;
-            text-align: center;
-        }
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport"
+                      content="width=device-width, initial-scale=1.0">
+                <title>Pembelian</title>
+                <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                }
 
-        h2 {
-            color: #4682B4;
-            margin-bottom: 30px;
-        }
+                .header {
+                    background-color: #4e73df;
+                    color: #fff;
+                    padding: 20px;
+                    text-align: center;
+                }
 
-        label {
-            display: block;
-            text-align: left;
-            margin-bottom: 10px;
-            color: #555555;
-        }
+                .feature {
+                    display: inline-block;
+                    margin: 0 10px;
+                    color: #fff;
+                    text-decoration: none;
+                    font-weight: bold;
+                }
 
-        input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-            border: 1px solid #4682B4;
-            border-radius: 6px;
-            font-size: 16px;
-            color: #333;
-        }
+                .feature:hover {
+                    text-decoration: underline;
+                }
+                </style>
+            </head>
 
-        input[type="submit"] {
-            background-color: #4682B4;
-            color: white;
-            cursor: pointer;
-            border: none;
-            border-radius: 6px;
-            padding: 12px;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-        }
+        </html>
 
-        input[type="submit"]:hover {
-            background-color: #4169E1;
-        }
-        </style>
+        <!-- Bootstrap -->
+        <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+              integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+              crossorigin="anonymous">
     </head>
 
     <body>
-        <form action="proses_tambah_pembelian.php"
-              method="post">
-            <h2>Tambah Pembelian</h2>
 
-            <label for="id_user">ID User:</label>
-            <input type="text"
-                   id="id_user"
-                   name="id_user"
-                   required>
+        <div class="container mt-5 mx-auto">
+            <center>
+                <h1>PEMBELIAN</h1>
+                <hr />
+            </center>
 
-            <label for="id_produk">ID Produk:</label>
-            <input type="text"
-                   id="id_produk"
-                   name="id_produk"
-                   required>
+            <div class="card mt-5">
+                <div class="card-body mx-auto">
+                    <form method="POST"
+                          action=""
+                          class="form-inline mt-3">
+                        <label for="nama_suplier">Nama Supplier&nbsp;</label>
+                        <select name="nama_suplier"
+                                id="nama_suplier"
+                                class="form-control mr-sm-2">
+                            >
+                            <?php 
+                            $resultbarang = mysqli_query($conn,"SELECT * FROM suplier");
+                            while($d = mysqli_fetch_assoc($resultbarang)):
+                        ?>
+                            <option value="<?= $d['nama_supplier'] ?>"><?= $d['nama_supplier'] ?></option>
+                            <?php endwhile ?>
+                        </select>
 
-            <label for="qty">Qty:</label>
-            <input type="text"
-                   id="qty"
-                   name="qty"
-                   required>
 
-            <label for="tanggal_pembelian">Tanggal Pembelian:</label>
-            <input type="text"
-                   id="tanggal_pembelian"
-                   name="tanggal_pembelian"
-                   required>
+                        <label for="nama_barang">Nama Barang&nbsp;</label>
+                        <select name="nama_barang"
+                                id="nama_barang"
+                                class="form-control mr-sm-2">
+                            >
 
-            <label for="id_suplier">ID Suplier:</label>
-            <input type="text"
-                   id="id_suplier"
-                   name="id_suplier"
-                   required>
+                        </select>
 
-            <label for="harga_beli">Harga Beli:</label>
-            <input type="text"
-                   id="harga_beli"
-                   name="harga_beli"
-                   required>
 
-            <label for="bayar">Bayar:</label>
-            <input type="text"
-                   id="bayar"
-                   name="bayar"
-                   required>
+                        <label for="harga">Harga&nbsp;</label>
+                        <input type="number"
+                               name="harga"
+                               id="harga"
+                               class="form-control mr-sm-2" />
 
-            <label for="sisa">Sisa:</label>
-            <input type="text"
-                   id="sisa"
-                   name="sisa"
-                   required>
+                        <label>Qty&nbsp;</label>
+                        <input type="number"
+                               name="qty"
+                               id="qty"
+                               class="form-control mr-sm-2">
+                        <button type="submit"
+                                name="submit"
+                                class="btn btn-primary">Input</button>
+                        <label for="bayar">Bayar&nbsp;</label>
+                        <input type="number"
+                               name="bayar"
+                               id="bayarinput"
+                               class="form-control mr-sm-2">
+                        <button type="button"
+                                name="submit"
+                                id='submitbayar'
+                                class="btn btn-primary">Hitung</button>
+                    </form>
+                    <hr />
 
-            <label for="created_at">Created At:</label>
-            <input type="text"
-                   id="created_at"
-                   name="created_at"
-                   required>
+                    <!--code menampilkan data-->
+                    <table class="table table-bordered mt-5">
+                        <tr>
+                            <th>No.</th>
+                            <th>Nama Barang</th>
+                            <th>Harga Satuan</th>
+                            <th>Qty</th>
+                            <th>Total</th>
+                        </tr>
 
-            <input type="submit"
-                   value="Tambah Pembelian">
-        </form>
+                        <?php
+// perintah tampil data
+$q = mysqli_query($conn, "SELECT * FROM tambah_pembelian");
+ 
+$total = 0;
+$tot_bayar = 0;
+$no = 1;
+ 
+while ($r = $q->fetch_assoc()) {
+// total adalah hasil dari harga x qty
+$sisa = $r['bayar'] - $r['harga'];
+$total = $r['harga'] * $r['qty'];
+// total bayar adalah penjumlahan dari keseluruhan total
+$tot_bayar += $total;
+?>
 
+                        <tr>
+                            <td><?= $no++ ?></td>
+                            <td><?= ucwords($r['nama_produk']) ?></td>
+                            <td><?= $r['harga'] ?></td>
+                            <td><?= $r['qty'] ?></td>
+
+                            <td><?= $total ?></td>
+                        </tr>
+
+                        <?php
+}
+?>
+                        <form method='post'
+                              action='../admin/proses_tambah_pembelian.php'>
+                            <input type='hidden'
+                                   name='id_user'
+                                   value='<?= $_SESSION['user_id']; ?>' />
+                            <tr>
+                                <th colspan="4">Total Bayar</th>
+                                <th>
+                                    <input name='total_bayar'
+                                           id='total_bayar'
+                                           value=' <?= $tot_bayar ?> ' />
+                                </th>
+
+                            </tr>
+                            <tr>
+                                <th colspan="4"> Bayar</th>
+                                <th>
+                                    <input name='jumlah_bayar'
+                                           id='bayar'
+                                           value='' />
+                                </th>
+
+                            </tr>
+
+                            <tr>
+                                <th colspan="4">Sisa</th>
+                                <th>
+                                    <input value=''
+                                           name='sisa'
+                                           id='sisa' />
+                                </th>
+
+                            </tr>
+                    </table>
+                    <button type="submit"
+                            name="submit"
+                            class="btn btn-primary">SIMPAN</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
-        var tanggalPembelianInput = document.getElementById("tanggal_pembelian");
-        var createdAtInput = document.getElementById("created_at");
+        const selectharga = () => {
+            var namaBarang = $('#nama_barang').val();
+            console.log(namaBarang)
+            $.ajax({
+                url: 'get_harga.php',
+                type: 'post',
+                data: {
+                    nama_barang: namaBarang
+                },
+                success: function(response) {
+                    $('#harga').val(response);
+                }
+            });
+        }
+        const selectbarang = () => {
+            var namaSuplier = $('#nama_suplier').val();
+            console.log(namaSuplier)
+            $.ajax({
+                url: 'get_suplier.php',
+                type: 'post',
+                data: {
+                    nama_suplier: namaSuplier
+                },
+                success: function(response) {
+                    $('#nama_barang').html(response);
+                }
+            });
+        }
 
-        var currentTime = new Date();
-        var formattedDate = currentTime.toISOString().slice(0, 10);
+        $('#nama_suplier').change(function() {
+            selectbarang()
+        })
 
-        tanggalPembelianInput.value = formattedDate;
-        createdAtInput.value = formattedDate;
+        $('#nama_barang').change(function() {
+            selectharga()
+        })
+        $(document).ready(function() {
+            selectbarang()
+            selectharga()
+        });
         </script>
+        <script>
+        const bayarinput = document.getElementById("bayarinput")
+        const bayar = document.getElementById("bayar")
+        const submitbayar = document.getElementById("submitbayar")
+        const sisa = document.getElementById("sisa")
+        const totalbayar = document.getElementById("total_bayar")
+
+        submitbayar.onclick = () => {
+            bayar.value = bayarinput.value
+            sisa.value = bayarinput.value - totalbayar.value
+        }
+        </script>
+
     </body>
 
 </html>

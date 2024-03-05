@@ -35,7 +35,6 @@ $result = $conn->query($sql);
                 <thead>
                     <tr>
                         <th>ID penjualan</th>
-                        <th>Kasir</th>
                         <th>Nama Barang</th>
                         <th>Harga</th>
                         <th>Qty</th>

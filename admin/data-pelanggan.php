@@ -84,7 +84,6 @@
             <table>
                 <tr>
                     <th>ID Pelanggan</th>
-                    <th>ID Toko</th>
                     <th>Nama Pelanggan</th>
                     <th>Alamat</th>
                     <th>No HP</th>
@@ -98,7 +97,6 @@
             ?>
                 <tr>
                     <td><?= $d['id_pelanggan']?></td>
-                    <td><?= $d['id_toko']?></td>
                     <td><?= $d['nama_pelanggan']?></td>
                     <td><?= $d['alamat']?></td>
                     <td><?= $d['no_hp']?></td>

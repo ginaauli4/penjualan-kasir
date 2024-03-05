@@ -14,7 +14,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 140vh;
+            height: 100vh;
             margin: 0;
         }
 
@@ -73,32 +73,6 @@
         <form action="proses_tambah_barang.php"
               method="post">
             <h2 style="color: #4682B4;">Tambah Barang</h2>
-
-
-            <label for="stok">Stok:</label>
-            <input type="text"
-                   id="stok"
-                   name="stok"
-                   required>
-
-            <label for="nama_produk">Nama Produk:</label>
-            <input type="text"
-                   id="nama_produk"
-                   name="nama_produk"
-                   required>
-
-
-            <label for="satuan">Satuan:</label>
-            <input type="text"
-                   id="satuan"
-                   name="satuan"
-                   required>
-
-            <label for="harga_beli">Harga Beli:</label>
-            <input type="text"
-                   id="harga_beli"
-                   name="harga_beli"
-                   required>
 
             <label for="harga_jual">Harga Jual:</label>
             <input type="text"
